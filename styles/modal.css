@@ -1,0 +1,225 @@
+/* ================= MODAL OVERLAY ================= */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+
+  backdrop-filter: blur(5px);
+}
+
+/* when modal is open */
+.modal.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ================= MODAL CONTAINER ================= */
+
+.modal-content {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+
+  width: min(860px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+
+  position: relative;
+
+  transform: translateY(18px);
+  transition: transform 0.22s;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(230, 57, 70, 0.08);
+}
+
+/* animation when opening */
+.modal.open .modal-content {
+  transform: translateY(0);
+}
+
+/* ================= CLOSE BUTTON ================= */
+
+.modal-close {
+  position: absolute;
+  top: 11px;
+  right: 11px;
+
+  background: var(--surf);
+  border: 1px solid var(--border);
+  color: var(--txt-dark);
+
+  font-size: 17px;
+  width: 30px;
+  height: 30px;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 2px;
+  z-index: 10;
+
+  transition: all 0.14s;
+}
+
+.modal-close:hover {
+  border-color: var(--acc);
+  color: var(--acc);
+}
+
+/* ================= MODAL BODY LAYOUT ================= */
+
+.modal-body {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+}
+
+/* ================= LEFT PANEL (IMAGE + NAME) ================= */
+
+.modal-image-container {
+  background: var(--surf);
+  padding: 22px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  border-right: 1px solid var(--border);
+}
+
+.modal-image {
+  width: 150px;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+}
+
+.modal-hero-name {
+  font-family: "Bebas Neue", cursive;
+  font-size: 19px;
+  color: var(--txt-light);
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.modal-hero-fullname {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 9px;
+  color: var(--txt-dark);
+  text-align: center;
+}
+
+/* ================= RIGHT PANEL (INFO) ================= */
+
+.modal-info {
+  padding: 18px 22px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* section title */
+.section-title {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--acc);
+  text-transform: uppercase;
+
+  margin-bottom: 9px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 5px;
+}
+
+/* ================= STATS ================= */
+
+.modal-stats {
+  display: grid;
+  gap: 6px;
+}
+
+.modal-stat-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-stat-label {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 9px;
+  color: var(--txt-dark);
+  letter-spacing: 1px;
+
+  width: 78px;
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+
+.modal-stat-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--surf);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.modal-stat-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-stat-value {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  color: var(--txt);
+
+  width: 26px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ================= INFO GRID ================= */
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px 14px;
+}
+
+.info-item .info-key {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 8px;
+  color: var(--txt-dark);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.info-item .info-value {
+  font-size: 12px;
+  color: var(--txt-light);
+}
+
+/* full width item */
+.info-item.full {
+  grid-column: 1 / -1;
+}
