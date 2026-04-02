@@ -1,0 +1,79 @@
+/*--- Custom Properties ---*/
+:root {
+  /* Backgrounds */
+  --bg: #07090f;
+  --bg2: #0d1117;
+  --surf: #141c28;
+  --surf2: #1a2535;
+  --border: #1e2d42;
+  /* Accent Colors */
+  --acc: #e63946;
+  --acc2: #ff6b35;
+  --gold: #f4a261;
+  --cyan: #00b4d8;
+  /* Typography */
+  --txt: #c8d6e5;
+  --txt-dark: #647d96;
+  --txt-light: #e8f1fa;
+  /* Semantic Colors */
+  --good: #2ec4b6;
+  --bad: #e63946;
+}
+
+/*--- Reset ---*/
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--txt);
+  font-family: "Exo 2", sans-serif;
+  font-size: clamp(0.8125rem, 0.6vw + 0.1rem, 1rem);
+  min-height: 2000px;
+  overflow-x: hidden;
+}
+
+/*--- Scrollbar ---*/
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+/*--- Media Queries ---*/
+@media (max-width: 680px) {
+  .mhero {
+    grid-template-columns: 1fr;
+  }
+  .mic {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .hs {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  header,
+  .tb,
+  .main {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
