@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VILLAIN'S DOSSIER — Superhero Intelligence</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!----- Header ----->
+    <header class="header">
+      <div class="header-container">
+        <div class="header-title">
+          <div class="header-tag">▸▸ CLASSIFIED INTEL</div>
+          <div class="header-main">VILLAIN'S DOSSIER</div>
+          <div class="header-sub">
+            SUPERHERO INTELLIGENCE DATABASE — EYES ONLY
+          </div>
+        </div>
+
+        <div class="header-stats">
+          <div class="stat-box">
+            <div class="stat-number" id="htotal">—</div>
+            <div class="stat-label">TOTAL</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number" id="hgood">—</div>
+            <div class="stat-label">GOOD</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number" id="hbad">—</div>
+            <div class="stat-label">BAD</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!----- TOOLBAR  (sticky — stays visible while scrolling) ----->
+    <div class="toolbar">
+      <div class="toolbar-container">
+        <!-- Search: field selector + operator + text input -->
+        <div class="search-group">
+          <select id="sfield">
+            <option value="name">Name</option>
+            <option value="fullname">Full Name</option>
+            <option value="race">Race</option>
+            <option value="gender">Gender</option>
+            <option value="birth">Place of Birth</option>
+            <option value="alignment">Alignment</option>
+            <option value="publisher">Publisher</option>
+            <option value="all">All Text Fields</option>
+            <option value="intelligence">Intelligence</option>
+            <option value="strength">Strength</option>
+            <option value="speed">Speed</option>
+            <option value="durability">Durability</option>
+            <option value="power">Power</option>
+            <option value="combat">Combat</option>
+            <option value="height">Height (cm)</option>
+            <option value="weight">Weight (kg)</option>
+          </select>
+
+          <select id="sop">
+            <option value="include">include</option>
+            <option value="exclude">exclude</option>
+            <option value="fuzzy">fuzzy</option>
+            <option value="equal">= equal</option>
+            <option value="not-equal">≠ not equal</option>
+            <option value="gt">&gt; greater</option>
+            <option value="lt">&lt; lesser</option>
+          </select>
+
+          <div class="search-input-wrapper">
+            <input
+              id="sinp"
+              type="text"
+              placeholder="Search targets..."
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button id="scl">×</button>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Alignment quick-filter -->
+        <div class="alignment-filters">
+          <button class="filter-btn act" data-align="all">ALL</button>
+          <button class="filter-btn" data-align="good">GOOD</button>
+          <button class="filter-btn" data-align="bad">BAD</button>
+          <button class="filter-btn" data-align="neutral">NEUTRAL</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Page size -->
+        <div class="pagination-settings">
+          <span class="label">SHOW</span>
+          <select id="psz">
+            <option value="10">10</option>
+            <option value="20" selected>20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="all">ALL</option>
+          </select>
+        </div>
+
+        <!-- Live result counter -->
+        <div id="rc"></div>
+      </div>
+    </div>
+
+    <!----- Main Content ----->
+    <div class="main">
+      <div class="table-wrapper">
+        <table id="tbl">
+          <colgroup>
+            <col class="ci" />
+            <!-- icon       -->
+            <col class="cn" />
+            <!-- name       -->
+            <col class="cf" />
+            <!-- full name  -->
+            <col class="cp" />
+            <!-- INT        -->
+            <col class="cp" />
+            <!-- STR        -->
+            <col class="cp" />
+            <!-- SPD        -->
+            <col class="cp" />
+            <!-- DUR        -->
+            <col class="cp" />
+            <!-- POW        -->
+            <col class="cp" />
+            <!-- COM        -->
+            <col class="cr" />
+            <!-- race       -->
+            <col class="cg" />
+            <!-- gender     -->
+            <col class="ch" />
+            <!-- height     -->
+            <col class="cw" />
+            <!-- weight     -->
+            <col class="cb" />
+            <!-- birthplace -->
+            <col class="ca" />
+            <!-- alignment  -->
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th data-col="icon">IMG</th>
+              <th data-col="name" class="srt">
+                NAME <span class="si">▲</span>
+              </th>
+              <th data-col="fullname">FULL NAME <span class="si">↕</span></th>
+              <th data-col="intelligence" title="Intelligence">
+                INT <span class="si">↕</span>
+              </th>
+              <th data-col="strength" title="Strength">
+                STR <span class="si">↕</span>
+              </th>
+              <th data-col="speed" title="Speed">
+                SPD <span class="si">↕</span>
+              </th>
+              <th data-col="durability" title="Durability">
+                DUR <span class="si">↕</span>
+              </th>
+              <th data-col="power" title="Power">
+                POW <span class="si">↕</span>
+              </th>
+              <th data-col="combat" title="Combat">
+                COM <span class="si">↕</span>
+              </th>
+              <th data-col="race">RACE <span class="si">↕</span></th>
+              <th data-col="gender">GENDER <span class="si">↕</span></th>
+              <th data-col="height">HEIGHT <span class="si">↕</span></th>
+              <th data-col="weight">WEIGHT <span class="si">↕</span></th>
+              <th data-col="birth">BIRTHPLACE <span class="si">↕</span></th>
+              <th data-col="alignment">ALIGN <span class="si">↕</span></th>
+            </tr>
+          </thead>
+
+          <!-- Rows are injected here by main.js -->
+          <tbody id="tbody">
+            <tr>
+              <td colspan="15">
+                <div class="loading-state">
+                  <div class="spinner"></div>
+                  <div class="loading-text">LOADING DOSSIER...</div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination bar injected here by main.js -->
+      <div class="pagination" id="pag"></div>
+    </div>
+
+    <!----- Modal ----->
+    <div class="modal" id="mo">
+      <div class="modal-content" id="md">
+        <button class="modal-close" id="mcl">×</button>
+        <!-- Content injected here by main.js -->
+        <div class="modal-body" id="mc"></div>
+      </div>
+    </div>
+  </body>
+</html>
