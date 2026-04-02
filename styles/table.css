@@ -1,0 +1,416 @@
+/* ================= MAIN LAYOUT ================= */
+
+.main {
+  width: min(1700px, 100%);
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--bg2);
+}
+
+.table-wrapper::-webkit-scrollbar {
+  height: 5px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* ================= COLUMN WIDTHS ================= */
+/* controlled via <colgroup> in HTML */
+
+col.ci {
+  width: 50px;
+} /* image      */
+col.cn {
+  width: 120px;
+} /* name       */
+col.cf {
+  width: 140px;
+} /* full name  */
+col.cp {
+  width: 50px;
+} /* power stat */
+col.cr {
+  width: 105px;
+} /* race       */
+col.cg {
+  width: 62px;
+} /* gender     */
+col.ch {
+  width: 76px;
+} /* height     */
+col.cw {
+  width: 76px;
+} /* weight     */
+col.cb {
+  width: 145px;
+} /* birthplace */
+col.ca {
+  width: 70px;
+} /* alignment  */
+
+/* ================= TABLE HEADER ================= */
+
+thead tr {
+  background: var(--surf);
+  border-bottom: 2px solid var(--border);
+}
+
+th {
+  padding: 0.5rem 0.3125rem;
+  text-align: left;
+  font-family: "Share Tech Mono", monospace;
+  font-size: clamp(9px, 0.4vw + 0.1rem, 12px);
+  font-weight: normal;
+  letter-spacing: 1.5px;
+  color: var(--txt-dark);
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  border-right: 1px solid var(--border);
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+
+th:last-child {
+  border-right: none;
+}
+
+th:hover {
+  color: var(--txt);
+  background: var(--surf2);
+}
+
+/* active sorted column */
+th.srt {
+  color: var(--gold);
+}
+
+/* sort icon */
+th .si {
+  margin-left: 3px;
+  font-size: 12px;
+  opacity: 0.4;
+}
+
+th.srt .si {
+  opacity: 1;
+  color: var(--gold);
+}
+
+/* ================= TABLE BODY ================= */
+
+tbody tr {
+  border-bottom: 1px solid rgba(30, 45, 66, 0.45);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+tbody tr:hover {
+  background: var(--surf);
+}
+
+/* selected row (modal open) */
+tbody tr.selected {
+  background: rgba(0, 180, 216, 0.06) !important;
+}
+
+td {
+  padding: 6px 5px;
+  border-right: 1px solid rgba(30, 45, 66, 0.35);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+td:last-child {
+  border-right: none;
+}
+
+/* ================= CELL TYPES ================= */
+
+/* image cell */
+.cell-icon {
+  padding: 3px 5px;
+  text-align: center;
+}
+
+.cell-icon img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  display: block;
+  margin: 0 auto;
+}
+
+/* hero name */
+.cell-name {
+  font-weight: 600;
+  color: var(--txt-light);
+  font-size: 0.75rem;
+}
+
+/* full name */
+.cell-fullname {
+  color: var(--txt-dark);
+  font-size: 11px;
+}
+
+/* power stat cell */
+.cell-stat {
+  text-align: center;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  position: relative;
+}
+
+/* colored bar at bottom of stat cell */
+.stat-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  opacity: 0.55;
+}
+
+/* stat number (sits above the bar) */
+.stat-value {
+  position: relative;
+  z-index: 1;
+}
+
+/* missing / null value */
+.cell-missing {
+  color: rgba(100, 125, 150, 0.3);
+  font-style: italic;
+  font-size: 10px;
+}
+
+/* height & weight */
+.cell-height,
+.cell-weight {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+}
+
+/* race & birthplace */
+.cell-race,
+.cell-birth {
+  font-size: 11px;
+  color: var(--txt-dark);
+}
+
+/* alignment cell */
+.cell-alignment {
+  text-align: center;
+}
+
+/* ================= ALIGNMENT BADGES ================= */
+
+.alignment-badge {
+  display: inline-block;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 1px;
+  padding: 2px 5px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.alignment-badge.good {
+  background: rgba(46, 196, 182, 0.1);
+  color: var(--good);
+  border: 1px solid rgba(46, 196, 182, 0.22);
+}
+
+.alignment-badge.bad {
+  background: rgba(230, 57, 70, 0.1);
+  color: var(--bad);
+  border: 1px solid rgba(230, 57, 70, 0.22);
+}
+
+.alignment-badge.neutral {
+  background: rgba(100, 125, 150, 0.1);
+  color: var(--txt-dark);
+  border: 1px solid rgba(100, 125, 150, 0.18);
+}
+
+/* ================= PAGINATION ================= */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0 0;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.page-info {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 10px;
+  color: var(--txt-dark);
+}
+
+.page-info strong {
+  color: var(--txt);
+}
+
+.page-controls {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.page-btn {
+  background: var(--surf);
+  border: 1px solid var(--border);
+  color: var(--txt-dark);
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  padding: 4px 9px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.14s;
+  min-width: 30px;
+  text-align: center;
+}
+
+.page-btn:hover:not(:disabled) {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+.page-btn.active {
+  background: rgba(0, 180, 216, 0.1);
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+.page-btn:disabled {
+  opacity: 0.28;
+  cursor: default;
+}
+
+.page-ellipsis {
+  color: var(--txt-dark);
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  padding: 0 3px;
+}
+
+/* ================= LOADING STATE ================= */
+
+.loading-state {
+  text-align: center;
+  padding: 56px 20px;
+  color: var(--txt-dark);
+}
+
+.spinner {
+  width: 34px;
+  height: 34px;
+  border: 2px solid var(--border);
+  border-top-color: var(--acc);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  margin: 0 auto 10px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+/* ================= EMPTY STATE ================= */
+
+.empty-state {
+  text-align: center;
+  padding: 44px 20px;
+  color: var(--txt-dark);
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.empty-state-icon {
+  font-size: 28px;
+  opacity: 0.28;
+  margin-bottom: 8px;
+}
+
+/* ================= ERROR STATE ================= */
+
+.error-box {
+  background: rgba(230, 57, 70, 0.07);
+  border: 1px solid rgba(230, 57, 70, 0.3);
+  border-radius: 4px;
+  padding: 24px 28px;
+  max-width: 560px;
+  margin: 0 auto;
+  font-family: "Share Tech Mono", monospace;
+}
+
+.error-title {
+  font-size: 14px;
+  color: var(--acc);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.error-message {
+  font-size: 11px;
+  color: var(--txt);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.error-message code {
+  background: var(--surf);
+  padding: 2px 6px;
+  border-radius: 2px;
+  color: var(--cyan);
+  font-size: 11px;
+}
+
+.error-message strong {
+  color: var(--gold);
+}
+
+.error-help {
+  font-size: 10px;
+  color: var(--txt-dark);
+  line-height: 1.7;
+}
+
+.error-help code {
+  background: var(--surf);
+  padding: 1px 5px;
+  border-radius: 2px;
+  color: var(--acc2);
+}
